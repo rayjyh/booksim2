@@ -85,6 +85,8 @@ protected:
 
   vector<TrafficPattern *> _traffic_pattern;
   vector<InjectionProcess *> _injection_process;
+  vector<queue<int> > _traffic_dest;
+  vector<queue<int> > _issue_time;
 
   // ============ Message priorities ============ 
 
@@ -109,7 +111,7 @@ protected:
 
   // ============ Injection queues ============ 
 
-  vector<vector<int> > _qtime;
+  vector<vector<int> > _qtime;  //queue time [nodes][classes]
   vector<vector<bool> > _qdrained;
   vector<vector<list<Flit *> > > _partial_packets;
 
@@ -231,7 +233,7 @@ protected:
 
   int _cur_id;
   int _cur_pid;
-  int _time;
+  int _time;  // ?
 
   set<int> _flits_to_watch;
   set<int> _packets_to_watch;
@@ -262,7 +264,7 @@ protected:
   // ============ Internal methods ============ 
 protected:
 
-  virtual void _RetireFlit( Flit *f, int dest );
+  virtual void _RetireFlit( Flit *f, int dest );  // retire flit at the dest node
 
   void _Inject();
   void _Step( );
@@ -292,9 +294,9 @@ protected:
 public:
 
   static TrafficManager * New(Configuration const & config, 
-			      vector<Network *> const & net);
+			      vector<Network *> const & net, const string & filename);
 
-  TrafficManager( const Configuration &config, const vector<Network *> & net );
+  TrafficManager( const Configuration &config, const vector<Network *> & net, const string & filename);
   virtual ~TrafficManager( );
 
   bool Run( );
