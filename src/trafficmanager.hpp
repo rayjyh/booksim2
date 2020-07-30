@@ -266,8 +266,8 @@ protected:
 
   virtual void _RetireFlit( Flit *f, int dest );  // retire flit at the dest node
 
-  void _Inject();
-  void _Step( );
+  void _Inject( int time );
+  void _Step( int time );
 
   bool _PacketsOutstanding( ) const;
   

@@ -34,8 +34,8 @@
 #include "batchtrafficmanager.hpp"
 
 BatchTrafficManager::BatchTrafficManager( const Configuration &config, 
-					  const vector<Network *> & net )
-: TrafficManager(config, net), _last_id(-1), _last_pid(-1), 
+					  const vector<Network *> & net, const string & filename )
+: TrafficManager(config, net, filename), _last_id(-1), _last_pid(-1),
    _overall_min_batch_time(0), _overall_avg_batch_time(0), 
    _overall_max_batch_time(0)
 {
@@ -122,7 +122,7 @@ bool BatchTrafficManager::_SingleSim( )
     bool batch_complete;
     cout << "Sending batch " << batch_index + 1 << " (" << _batch_size << " packets)..." << endl;
     do {
-      _Step();
+      _Step( -1);
       batch_complete = true;
       for(int i = 0; i < _nodes; ++i) {
 	if(_packet_seq_no[i] < _batch_size) {
@@ -147,7 +147,7 @@ bool BatchTrafficManager::_SingleSim( )
     }
     
     while( packets_left ) { 
-      _Step( ); 
+      _Step( -1 );
       
       ++empty_steps;
       

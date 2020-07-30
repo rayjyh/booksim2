@@ -54,11 +54,11 @@ BookSimConfig::BookSimConfig( )
   _int_map["c"] = 1; //concentration
   AddStrField( "routing_function", "none" );
 
-  //simulator tries to correclty adjust latency for node/router placement 
+  //simulator tries to correctly adjust latency for node/router placement
   _int_map["use_noc_latency"] = 1;
 
 
-  //used for noc latency calcualtion for network with concentration
+  //used for noc latency calculation for network with concentration
   _int_map["x"] = 8; //number of routers in X
   _int_map["y"] = 8; //number of routers in Y
   _int_map["xr"] = 1; //number of nodes per router in X only if c>1
@@ -282,7 +282,7 @@ BookSimConfig::BookSimConfig( )
   AddStrField("watch_packets", "");
   AddStrField("watch_transactions", "");
 
-  AddStrField("watch_out", "");
+  AddStrField("watch_out", "/Users/jingyu/Desktop/neuromorphic_computing/Hardware/NoC/booksim2/log.txt");
 
   AddStrField("stats_out", "");
 
@@ -306,7 +306,7 @@ BookSimConfig::BookSimConfig( )
   AddStrField("sent_packets_out", "");
   
   //==================Power model params=====================
-  _int_map["sim_power"] = 0;
+  _int_map["sim_power"] = 1;//0;
   AddStrField("power_output_file","pwr_tmp");
   AddStrField("tech_file", "");
   _int_map["channel_width"] = 128;
